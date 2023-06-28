@@ -1,0 +1,8 @@
+FROM registry.hub.docker.com/adobecoldfusion/coldfusion:latest-2023
+WORKDIR /app/
+COPY ../*.cfm .
+RUN chgrp -R 0 /app && chmod -R g+rwX /app
+RUN chgrp -R 0 /opt && chmod -R g+rwX /opt
+
+EXPOSE 8080
+USER 1001
