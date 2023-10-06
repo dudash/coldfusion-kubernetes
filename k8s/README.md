@@ -7,4 +7,4 @@ If you don't create the service from YAML you can:
 
 ## Expose and OpenShift route
 Next, if you're in OpenShift and want to use routes:
-* `oc expose service coldfusion-kubernetes`
+* `oc expose service coldfusion-kubernetes --path="/demowritedump.cfm"`
