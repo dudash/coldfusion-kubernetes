@@ -6,3 +6,4 @@ RUN chgrp -R 0 /opt && chmod -R g+rwX /opt
 
 ENV acceptEULA="YES"
 EXPOSE 8080
+USER root
