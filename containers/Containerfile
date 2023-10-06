@@ -4,5 +4,5 @@ COPY ../*.cfm .
 RUN chgrp -R 0 /app && chmod -R g+rwX /app
 RUN chgrp -R 0 /opt && chmod -R g+rwX /opt
 
+ENV acceptEULA="YES"
 EXPOSE 8080
-USER 1001
