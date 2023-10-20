@@ -14,7 +14,7 @@ Otherwise, I also exported some sample YAML files you can use with `kubectl appl
 ## Notes
 
 ### In an OpenShift environment
-This container will start as non-root user ([best practice for security reasons](https://opensource.com/article/18/3/just-say-no-root-containers)), however once the CF server begins as a non-root user it [complains](./ExampleRootError.md) about requiring root permissions. Bonus: Read more about [best practices for containers](https://developers.redhat.com/articles/2021/11/11/best-practices-building-images-pass-red-hat-container-certification) here.
+This container will start as non-root user (best practice for security reasons as noted by [Red Hat](https://opensource.com/article/18/3/just-say-no-root-containers) and [Google](https://cloud.google.com/architecture/best-practices-for-operating-containers#avoid_running_as_root)), however once the CF server begins as a non-root user it [complains](./ExampleRootError.md) about requiring root permissions. Bonus: Read more about [best practices for containers](https://developers.redhat.com/articles/2021/11/11/best-practices-building-images-pass-red-hat-container-certification) here.
 
 It's TBD if we could set configuration and permissions during the container build to avoid this error, it'd be a good next step to work with Adobe to inquire about that. Typically, when we have control over the application, we can tweak some settings to run as a non-root user. However, in this case Adobe owns the base image and might need to change core things.
 
