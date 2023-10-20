@@ -14,11 +14,11 @@ Otherwise, I also exported some sample YAML files you can use with `kubectl appl
 ## Notes
 
 ### In an OpenShift environment
-This container will start as non-root user ([best practice for security reasons](https://developers.redhat.com/articles/2021/11/11/best-practices-building-images-pass-red-hat-container-certification)), however once the CF server begins as a non-root user it [complains](./ExampleRootError.md) about requiring root permissions.
+This container will start as non-root user ([best practice for security reasons](https://opensource.com/article/18/3/just-say-no-root-containers)), however once the CF server begins as a non-root user it [complains](./ExampleRootError.md) about requiring root permissions. Bonus: Read more about [best practices for containers](https://developers.redhat.com/articles/2021/11/11/best-practices-building-images-pass-red-hat-container-certification) here.
 
-It's TBD if we could configure directories and set permissions to avoid this error, it'd be a good next step to work with Adobe to inquire about that. Typically, when we have control over the application, we can tweak some settings to run as a non-root user. However, in this case Adobe owns the base image and might need to change core things.
+It's TBD if we could set configuration and permissions during the container build to avoid this error, it'd be a good next step to work with Adobe to inquire about that. Typically, when we have control over the application, we can tweak some settings to run as a non-root user. However, in this case Adobe owns the base image and might need to change core things.
 
-So we will need to relax OpenShift SCCs to allow for this pod, in this namespace, to run as root user. There are example YAML configs [in this repo](./k8s) showing how to create a ServiceAccount and RoleBinding for that. Additionally, you'll need to tell the K8s Deployment using `serviceAccountName: coldfusion-runner-sa` & `securityContext: runAsUser: 0`
+So for now, we will need to relax OpenShift SCCs to allow for the CF pod, in a particular namespace, to run as root user. There are example YAML configs [in this repo](./k8s) showing how to create a ServiceAccount and RoleBinding for that. Additionally, you'll need to tell the K8s Deployment using `serviceAccountName: coldfusion-runner-sa` & `securityContext: runAsUser: 0`
 
 
 ## Contributing
